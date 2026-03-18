@@ -2,14 +2,18 @@ import { useState } from 'react';
 import { Layout } from './components/Layout';
 import { DayContent } from './components/DayContent';
 import { ReferencePanel } from './components/ReferencePanel';
+import { ThemeProvider } from './contexts/ThemeContext';
+import { useTheme } from './hooks/useTheme';
 import { usePersistedProgress } from './hooks/usePersistedState';
 import { DAYS } from './data/days';
 import type { DayId } from './types/course';
 import type { TaskProgress } from './types/progress';
 
-function App() {
+function AppInner() {
   const [progress, setProgress] = usePersistedProgress();
   const [activeDayId, setActiveDayId] = useState<DayId>('day1');
+  const { theme } = useTheme();
+  const c = theme.colors;
 
   const activeDay = DAYS.find((d) => d.id === activeDayId) ?? DAYS[0];
 
@@ -52,10 +56,10 @@ function App() {
               x2="100%"
               y2="100%"
             >
-              <stop offset="0%" stopColor="#0077B6" stopOpacity="0.5" />
-              <stop offset="40%" stopColor="#00B4D8" stopOpacity="0.42" />
-              <stop offset="70%" stopColor="#90E0EF" stopOpacity="0.28" />
-              <stop offset="100%" stopColor="#03045E" stopOpacity="0.18" />
+              <stop offset="0%" stopColor={c['--stripe-1']} stopOpacity={c['--stripe-1-opacity']} />
+              <stop offset="40%" stopColor={c['--stripe-2']} stopOpacity={c['--stripe-2-opacity']} />
+              <stop offset="70%" stopColor={c['--stripe-3']} stopOpacity={c['--stripe-3-opacity']} />
+              <stop offset="100%" stopColor={c['--stripe-4']} stopOpacity={c['--stripe-4-opacity']} />
             </linearGradient>
             <linearGradient
               id="stripe-gradient-soft"
@@ -64,18 +68,16 @@ function App() {
               x2="80%"
               y2="100%"
             >
-              <stop offset="0%" stopColor="#00B4D8" stopOpacity="0.28" />
-              <stop offset="50%" stopColor="#90E0EF" stopOpacity="0.2" />
-              <stop offset="100%" stopColor="#03045E" stopOpacity="0.14" />
+              <stop offset="0%" stopColor={c['--stripe-soft-1']} stopOpacity={c['--stripe-soft-1-opacity']} />
+              <stop offset="50%" stopColor={c['--stripe-soft-2']} stopOpacity={c['--stripe-soft-2-opacity']} />
+              <stop offset="100%" stopColor={c['--stripe-soft-3']} stopOpacity={c['--stripe-soft-3-opacity']} />
             </linearGradient>
           </defs>
-          {/* Diagonal ribbon: top-left to bottom-right */}
           <path
             className="app-stripe-path"
             d="M-80 0 L1280 1200 L1120 1200 L-240 0 Z"
             fill="url(#stripe-gradient)"
           />
-          {/* Inner diagonal band for depth */}
           <path
             className="app-stripe-path app-stripe-path--soft"
             d="M60 60 L1140 1140 L1000 1140 L-80 60 Z"
@@ -101,6 +103,14 @@ function App() {
       </Layout>
       <ReferencePanel />
     </div>
+  );
+}
+
+function App() {
+  return (
+    <ThemeProvider>
+      <AppInner />
+    </ThemeProvider>
   );
 }
 
