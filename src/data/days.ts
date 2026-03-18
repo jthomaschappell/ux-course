@@ -280,6 +280,7 @@ export const REFERENCE_RESOURCES: { name: string; desc: string; url?: string }[]
   { name: 'Figma official tutorials', desc: '', url: 'https://www.figma.com/resources/learn-design/' },
   { name: 'Figma Community design systems', desc: '', url: 'https://www.figma.com/community' },
   { name: 'AJ&Smart YouTube', desc: 'Practical UX walkthroughs', url: 'https://www.youtube.com/@ajsmart' },
+  { name: 'Godly', desc: 'Curated web design inspiration', url: 'https://godly.website/' },
 ];
 
 export const MENTAL_MODEL = `Always structure thinking like this:

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Website recommendations — 7-Day UX Fluency Plan</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #fff;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --accent: #0077B6;
+      --border: #e2e8f0;
+      --font-sans: system-ui, -apple-system, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      padding: 2rem 1rem 4rem;
+    }
+    .container { max-width: 720px; margin: 0 auto; }
+    header {
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+    }
+    h1 { font-size: 1.75rem; margin: 0 0 0.25rem; }
+    .meta { font-size: 0.875rem; color: var(--text-muted); }
+    h2 {
+      font-size: 1.25rem;
+      margin: 2rem 0 0.75rem;
+      color: var(--accent);
+    }
+    section { margin-bottom: 1.5rem; }
+    ul { padding-left: 1.25rem; margin: 0.5rem 0; }
+    li { margin-bottom: 0.35rem; }
+    .priority { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-left: 0.5rem; }
+    .priority.high { color: #b91c1c; }
+    .priority.medium { color: #b45309; }
+    .priority.low { color: var(--text-muted); }
+    code { background: #f1f5f9; padding: 0.15em 0.4em; border-radius: 4px; font-size: 0.9em; }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Website recommendations</h1>
+      <p class="meta">7-Day UX Fluency Plan — Generated 2026-03-17</p>
+    </header>
+
+    <p>Recommendations from a scan of the codebase and UX patterns. Use as a prioritized checklist to improve the site.</p>
+
+    <h2>1. Meta &amp; SEO</h2>
+    <section>
+      <ul>
+        <li>Add <code>&lt;meta name="description" content="..."&gt;</code> in <code>index.html</code> for search snippets and sharing.</li>
+        <li>Add Open Graph tags (<code>og:title</code>, <code>og:description</code>, <code>og:type</code>) for link previews.</li>
+        <li>Replace default <code>/vite.svg</code> favicon with a course-specific icon (and consider an Apple touch icon).</li>
+      </ul>
+    </section>
+
+    <h2>2. Font consistency</h2>
+    <section>
+      <ul>
+        <li><span class="priority high">High</span> <code>index.html</code> loads <strong>DM Sans</strong> from Google Fonts; <code>variables.css</code> and <code>STYLE_GUIDE.md</code> reference <strong>Inter</strong> and <strong>Sora</strong>. Align: either switch the font link to Inter + Sora, or update CSS variables and the style guide to DM Sans.</li>
+      </ul>
+    </section>
+
+    <h2>3. Accessibility</h2>
+    <section>
+      <ul>
+        <li>Reference panel toggle: add <code>aria-controls</code> pointing to the expandable content container so assistive tech can link button and panel.</li>
+        <li>Progress bar: add <code>aria-valuenow</code>, <code>aria-valuemin</code>, <code>aria-valuemax</code> (and <code>role="progressbar"</code>) on the progress fill so screen readers announce percentage.</li>
+        <li>Reference panel when open: add <code>aria-label</code> to the content wrapper so the region is named (e.g. “Reference and resources”).</li>
+        <li>Ensure all form inputs have a single, programmatic label (e.g. <code>id</code> + <code>htmlFor</code>) where labels don’t wrap the control; current forms are mostly fine but worth auditing for dynamic or repeated fields.</li>
+      </ul>
+    </section>
+
+    <h2>4. Performance</h2>
+    <section>
+      <ul>
+        <li>Consider lazy-loading day content (e.g. <code>React.lazy</code> + <code>Suspense</code> per day) so only the active day’s form and copy are in the initial bundle; low priority if the app stays small.</li>
+        <li>Persistence: <code>usePersistedState</code> writes to <code>localStorage</code> on every update. For heavy forms (e.g. long textareas), debounce or batch writes (e.g. 300–500 ms after last change) to reduce write frequency.</li>
+        <li>Fonts: <code>preconnect</code> to Google Fonts is already in place; consider <code>font-display: swap</code> in the font URL if not already set.</li>
+      </ul>
+    </section>
+
+    <h2>5. UX &amp; layout</h2>
+    <section>
+      <ul>
+        <li>Reference panel is fixed at the bottom and can cover the “Review artifacts” / next-action target when open. Consider a max-height (e.g. 50vh is already there), a “collapse to bar only” state, or scroll-into-view that accounts for the panel so the CTA isn’t hidden.</li>
+        <li>Day tabs: when switching days, optionally scroll the main content to the top so the user sees the new day’s intro immediately.</li>
+        <li>Empty state: “No tasks for this day” is good; consider a short empty state for artifact forms (e.g. “Complete the tasks above, then fill your artifacts here”) where it helps.</li>
+      </ul>
+    </section>
+
+    <h2>6. Data &amp; persistence</h2>
+    <section>
+      <ul>
+        <li>Storage schema is versioned (<code>version: 1</code>); document the migration path for future versions (e.g. in <code>usePersistedState.ts</code> or a small migration module) so adding new fields or renaming keys is safe.</li>
+        <li>Optional: add an “Export progress” / “Import progress” (e.g. JSON download and file upload) so users can back up or move data between devices.</li>
+      </ul>
+    </section>
+
+    <h2>7. Code &amp; maintainability</h2>
+    <section>
+      <ul>
+        <li><code>DayContent</code> uses class <code>bento-grid</code> but there is no <code>.bento-grid</code> rule in the scanned CSS; either define it (e.g. grid layout for day sections) or remove the class to avoid confusion.</li>
+        <li>Repeated list keys: <code>ReferencePanel</code> and similar use index-as-key for static lists; prefer stable keys (e.g. resource name or id) if list order might change or items are dynamic.</li>
+      </ul>
+    </section>
+
+    <h2>8. Content &amp; course design</h2>
+    <section>
+      <ul>
+        <li>Cross-reference <code>doc/course-content-recommendations.md</code> for content-specific improvements (study items, Day 1 clarity, reference panel copy, artifact scaffolding, “Good looks like,” etc.).</li>
+        <li>Ensure reference resources stay current (Godly and others) and that external links are periodically checked.</li>
+      </ul>
+    </section>
+
+    <h2>9. Testing &amp; QA</h2>
+    <section>
+      <ul>
+        <li>README already includes a manual QA checklist; consider adding a note about testing with a screen reader (e.g. VoiceOver) and keyboard-only for the tabs, reference toggle, and one full artifact form.</li>
+        <li>If the app is deployed, add a smoke test or minimal E2E (e.g. load app, switch day, toggle reference panel, tick one task) to catch regressions; see <code>doc/e2e-tests.md</code> for scenarios.</li>
+      </ul>
+    </section>
+
+    <footer style="margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.875rem; color: var(--text-muted);">
+      Generated from a scan of <code>src/</code>, <code>index.html</code>, and <code>doc/</code>. Prioritize by impact and effort; meta description and font alignment are quick wins.
+    </footer>
+  </div>
+</body>
+</html>
