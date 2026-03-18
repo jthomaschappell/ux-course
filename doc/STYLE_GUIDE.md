@@ -1,15 +1,15 @@
 # UX Course — Visual Style Guide
 
-This guide helps developers add features that stay consistent with the app’s visual language: **white, minimal, strong hierarchy**, with a **single accent color** (orange) and a **diagonal background stripe** that runs across the screen. Use the tokens and patterns below instead of hard-coding values.
+This guide helps developers add features that stay consistent with the app’s visual language: **light, minimal, strong hierarchy**, with a **blue accent palette** (Deep Twilight → Light Cyan) and a **diagonal background stripe** that runs across the screen. Use the tokens and patterns below instead of hard-coding values.
 
 ---
 
 ## 1. Design principles
 
-- **One saturated accent:** Use orange (`--color-accent`) only for primary CTAs and key emphasis so it stays the main attention magnet.
+- **One saturated accent:** Use the blue palette (`--color-accent` = Bright Teal Blue) only for primary CTAs and key emphasis so it stays the main attention magnet.
 - **Clear hierarchy:** Display font (Sora) for headlines; body font (Inter) for copy. Use kickers (small caps) and muted text for secondary info.
 - **Generous space:** Use the 8px-based spacing scale. Avoid cramped layouts.
-- **Soft surfaces:** White cards on warm off-white (`#f7f7f4`). Borders are light gray; shadows are subtle.
+- **Soft surfaces:** White cards on light cyan (`#CAF0F8`). Borders use Frosted Blue tones; shadows are subtle.
 - **Pill-shaped actions:** Primary buttons and tab-like controls use `border-radius: 999px`.
 
 ---
@@ -20,21 +20,23 @@ All tokens live in **`src/styles/variables.css`**. Reference them in CSS; do not
 
 ### Colors
 
+Palette: **Deep Twilight** `#03045E`, **Bright Teal Blue** `#0077B6`, **Turquoise Surf** `#00B4D8`, **Frosted Blue** `#90E0EF`, **Light Cyan** `#CAF0F8`.
+
 | Token | Value | Use for |
 |-------|--------|---------|
-| `--color-bg` | `#f7f7f4` | Page background |
+| `--color-bg` | `#CAF0F8` | Page background (Light Cyan) |
 | `--color-bg-soft` | `#ffffff` | Gradient end, soft areas |
 | `--color-surface` | `#ffffff` | Cards, panels |
-| `--color-surface-hover` | `#f4f4f1` | Hover states |
-| `--color-border` | `#e7e7e2` | Borders, dividers |
-| `--color-text` | `#171717` | Primary text |
-| `--color-text-muted` | `#646464` | Secondary text, labels |
-| `--color-accent` | `#ff6f2d` | Primary CTA, focus ring |
-| `--color-accent-hover` | `#ff8249` | CTA hover |
-| `--color-accent-2` | `#191919` | Dark UI (active tab, progress bar) |
+| `--color-surface-hover` | `#E6F7FB` | Hover states |
+| `--color-border` | `#B8E8F0` | Borders, dividers |
+| `--color-text` | `#03045E` | Primary text (Deep Twilight) |
+| `--color-text-muted` | `#4a6b7c` | Secondary text, labels |
+| `--color-accent` | `#0077B6` | Primary CTA, focus ring (Bright Teal Blue) |
+| `--color-accent-hover` | `#00B4D8` | CTA hover (Turquoise Surf) |
+| `--color-accent-2` | `#03045E` | Dark UI (active tab, progress bar) (Deep Twilight) |
 | `--color-success` | `#28a35e` | Success state |
 | `--color-warn` | `#f2aa2a` | Warning / amber state |
-| `--color-focus` | `#ff6f2d` | Focus outline |
+| `--color-focus` | `#0077B6` | Focus outline |
 
 ### Typography
 
@@ -80,11 +82,11 @@ Pills (tabs, primary buttons): `border-radius: 999px`.
 ### Shadows
 
 ```css
---shadow-glow: 0 12px 24px rgba(255, 111, 45, 0.22);  /* Accent CTA */
---shadow-deep: 0 14px 40px rgba(23, 23, 23, 0.08);     /* Cards, nav */
+--shadow-glow: 0 12px 24px rgba(0, 119, 182, 0.22);   /* Accent CTA */
+--shadow-deep: 0 14px 40px rgba(3, 4, 94, 0.08);       /* Cards, nav */
 ```
 
-Content sections use a lighter shadow: `0 2px 6px rgba(20, 20, 20, 0.03)`.
+Content sections use a lighter shadow: `0 2px 6px rgba(3, 4, 94, 0.03)`.
 
 ---
 
@@ -123,11 +125,11 @@ Each logical block (study, deliverable, tasks, artifacts) is a **section** with 
 
 ```css
 .day-content > section {
-  background: #fff;
+  background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
   padding: var(--space-6);
-  box-shadow: 0 2px 6px rgba(20, 20, 20, 0.03);
+  box-shadow: 0 2px 6px rgba(3, 4, 94, 0.03);
 }
 ```
 
@@ -246,7 +248,7 @@ font-weight: 600;
 box-shadow: var(--shadow-glow);
 ```
 
-Hover: `background: var(--color-accent-hover)`.
+Hover: `background: var(--color-accent-hover)` (Turquoise Surf).
 
 ### Secondary / ghost button
 
@@ -255,13 +257,13 @@ For “Add issue”, “Cancel”, or less prominent actions.
 ```css
 border: 1px solid var(--color-border);
 border-radius: 999px;
-background: #f6f6f3;
+background: var(--color-surface-hover);
 color: var(--color-text);
 font-weight: 600;
 padding: 10px 16px;
 ```
 
-Hover: `background: #efefea`.
+Hover: `background: var(--color-border)`.
 
 ### Status chips
 
@@ -302,7 +304,7 @@ Pill tabs with optional badge. Active state is dark, not accent.
 <button class="day-tab" type="button">Day 2</button>
 ```
 
-Active: `background: #202020; border-color: #4a4a4a; color: #fff`. Inactive: white background, `--color-border`.
+Active: `background: var(--color-accent-2); border-color: var(--color-accent); color: #fff`. Inactive: `--color-surface` background, `--color-border`.
 
 ### Form inputs and labels
 
@@ -329,12 +331,12 @@ Keep labels and inputs in a single system: block label, then control.
   padding: 12px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  background: #fff;
+  background: var(--color-surface);
   font: inherit;
 }
 ```
 
-Focus: `border-color: #c7c7c1; box-shadow: 0 0 0 3px rgba(255, 111, 45, 0.15); outline: none`.
+Focus: `border-color: var(--color-accent-hover); box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.15); outline: none`.
 
 ### Checkbox / task row
 
@@ -348,10 +350,10 @@ Tasks use the `Checkbox` component. The row has a light background and border.
   padding: var(--space-3);
   border-radius: var(--radius-md);
   border: 1px solid var(--color-border);
-  background: #fcfcfb;
+  background: var(--color-surface-hover);
 }
 .checkbox-label.done {
-  color: #8b8b84;
+  color: var(--color-text-muted);
   text-decoration: line-through;
 }
 ```
@@ -371,10 +373,10 @@ A **diagonal stripe** runs across the screen (top-left to bottom-right) to add d
 
 ### Palette and gradients
 
-The stripe uses the **same palette** as the rest of the app:
+The stripe uses the **same blue palette** as the rest of the app:
 
-- **Primary gradient** (`stripe-gradient`): `#ff6f2d` → `#ff8249` → `#444444` → `#191919`, with stop opacity ~0.18–0.5. Gradient vector `x1="0%" y1="0%" x2="100%" y2="100%"` so the fill runs diagonally with the band.
-- **Soft layer** (`stripe-gradient-soft`): accent and neutrals (`#646464`, `#191919`) at lower opacity (~0.14–0.28).
+- **Primary gradient** (`stripe-gradient`): `#0077B6` → `#00B4D8` → `#90E0EF` → `#03045E`, with stop opacity ~0.18–0.5. Gradient vector `x1="0%" y1="0%" x2="100%" y2="100%"` so the fill runs diagonally with the band.
+- **Soft layer** (`stripe-gradient-soft`): Turquoise Surf, Frosted Blue, and Deep Twilight at lower opacity (~0.14–0.28).
 
 ### CSS (components.css)
 
@@ -398,7 +400,7 @@ At `max-width: 640px`, `.app-stripe` uses `120vw`, `120vh`, `top: -15%`, `left: 
 
 ### Extending or changing the stripe
 
-1. Keep the same hex values from `variables.css` (or map them to gradient stops) so the stripe stays on-palette.
+1. Keep the same blue palette hex values from `variables.css` (or map them to gradient stops: Deep Twilight, Bright Teal, Turquoise Surf, Frosted Blue, Light Cyan) so the stripe stays on-palette.
 2. Keep stop opacities in a readable range so text and UI remain clear.
 3. To add another band or shape: add a new `<path>` in the SVG and, if needed, a new gradient in `<defs>` with `url(#id)` for the fill. Adjust the path `d` so the shape follows the diagonal if you want a consistent direction.
 4. To change the angle: adjust the `transform: rotate(...)` value on `.app-stripe` (and the mobile override). To make the stripe wider or narrower on screen, change the path coordinates in the SVG or the container `width`/`height`.
@@ -413,14 +415,14 @@ At `max-width: 640px`, `.app-stripe` uses `120vw`, `120vh`, `top: -15%`, `left: 
 - Use `SectionHeading` and `Card` for section structure.
 - Use the spacing scale (`--space-*`) for margins and padding.
 - Use display font only for headlines; keep body and UI in sans.
-- Reserve orange for one primary CTA per view when possible.
+- Reserve the blue accent for one primary CTA per view when possible.
 
 **Don’t:**
 
-- Introduce new accent colors (e.g. blue or purple buttons) without aligning with the team.
+- Introduce new accent colors (e.g. orange or purple buttons) without aligning with the team.
 - Hard-code hex values that already exist as tokens.
 - Use centered hero text; the established pattern is left-aligned message + right card.
-- Use heavy shadows or saturated backgrounds; keep the page light and minimal.
+- Use heavy shadows or overly saturated backgrounds; keep the page light and minimal.
 - Add more than one “hero-level” CTA in the same row.
 
 ---

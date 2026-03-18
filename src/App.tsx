@@ -52,10 +52,10 @@ function App() {
               x2="100%"
               y2="100%"
             >
-              <stop offset="0%" stopColor="#ff6f2d" stopOpacity="0.5" />
-              <stop offset="40%" stopColor="#ff8249" stopOpacity="0.42" />
-              <stop offset="70%" stopColor="#444444" stopOpacity="0.28" />
-              <stop offset="100%" stopColor="#191919" stopOpacity="0.18" />
+              <stop offset="0%" stopColor="#0077B6" stopOpacity="0.5" />
+              <stop offset="40%" stopColor="#00B4D8" stopOpacity="0.42" />
+              <stop offset="70%" stopColor="#90E0EF" stopOpacity="0.28" />
+              <stop offset="100%" stopColor="#03045E" stopOpacity="0.18" />
             </linearGradient>
             <linearGradient
               id="stripe-gradient-soft"
@@ -64,9 +64,9 @@ function App() {
               x2="80%"
               y2="100%"
             >
-              <stop offset="0%" stopColor="#ff6f2d" stopOpacity="0.28" />
-              <stop offset="50%" stopColor="#646464" stopOpacity="0.2" />
-              <stop offset="100%" stopColor="#191919" stopOpacity="0.14" />
+              <stop offset="0%" stopColor="#00B4D8" stopOpacity="0.28" />
+              <stop offset="50%" stopColor="#90E0EF" stopOpacity="0.2" />
+              <stop offset="100%" stopColor="#03045E" stopOpacity="0.14" />
             </linearGradient>
           </defs>
           {/* Diagonal ribbon: top-left to bottom-right */}

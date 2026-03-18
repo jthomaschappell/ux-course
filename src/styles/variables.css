@@ -26,21 +26,22 @@
   --radius-lg: 20px;
   --radius-xl: 26px;
 
-  --color-bg: #f7f7f4;
+  /* Blue palette: Deep Twilight #03045E, Bright Teal #0077B6, Turquoise Surf #00B4D8, Frosted Blue #90E0EF, Light Cyan #CAF0F8 */
+  --color-bg: #CAF0F8;
   --color-bg-soft: #ffffff;
   --color-surface: #ffffff;
-  --color-surface-hover: #f4f4f1;
-  --color-border: #e7e7e2;
-  --color-text: #171717;
-  --color-text-muted: #646464;
-  --color-accent: #ff6f2d;
-  --color-accent-2: #191919;
-  --color-accent-hover: #ff8249;
+  --color-surface-hover: #E6F7FB;
+  --color-border: #B8E8F0;
+  --color-text: #03045E;
+  --color-text-muted: #4a6b7c;
+  --color-accent: #0077B6;
+  --color-accent-2: #03045E;
+  --color-accent-hover: #00B4D8;
   --color-success: #28a35e;
-  --color-focus: #ff6f2d;
+  --color-focus: #0077B6;
   --color-warn: #f2aa2a;
-  --shadow-glow: 0 12px 24px rgba(255, 111, 45, 0.22);
-  --shadow-deep: 0 14px 40px rgba(23, 23, 23, 0.08);
-  --gradient-main: linear-gradient(90deg, #171717 0%, #444444 100%);
+  --shadow-glow: 0 12px 24px rgba(0, 119, 182, 0.22);
+  --shadow-deep: 0 14px 40px rgba(3, 4, 94, 0.08);
+  --gradient-main: linear-gradient(90deg, #03045E 0%, #0077B6 100%);
 }
 
