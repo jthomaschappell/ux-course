@@ -30,6 +30,7 @@ export function DayTabs({ days, activeDayId, onSelect, taskProgress, totalTasks 
       (day.tasks?.filter((t) => taskProgress[day.id]?.[t.id]).length ?? 0),
     0
   );
+  const progressPct = totalTasks > 0 ? Math.round((doneCount / totalTasks) * 100) : 0;
 
   return (
     <div
@@ -39,7 +40,7 @@ export function DayTabs({ days, activeDayId, onSelect, taskProgress, totalTasks 
       onKeyDown={handleKeyDown}
     >
       <div className="day-tabs-progress" aria-live="polite">
-        {doneCount} / {totalTasks} tasks
+        Course progress: {doneCount}/{totalTasks} tasks ({progressPct}%)
       </div>
       <div className="day-tabs-list">
         {days.map((day) => {

@@ -21,7 +21,7 @@ export function ArtifactForm({ day, artifacts, onArtifactsChange }: ArtifactForm
   };
 
   return (
-    <section className="artifact-form">
+    <section id="artifacts" className="artifact-form">
       <SectionHeading level={3}>Your artifacts</SectionHeading>
       {day.artifactType === 'day1Critique' && (
         <Day1CritiqueForm

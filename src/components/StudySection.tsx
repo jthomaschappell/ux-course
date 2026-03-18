@@ -5,16 +5,18 @@ interface StudySectionProps {
 }
 
 export function StudySection({ items }: StudySectionProps) {
-  if (items.length === 0) return null;
-
   return (
     <section className="study-section">
       <SectionHeading>Study</SectionHeading>
-      <ul>
-        {items.map((item, i) => (
-          <li key={i}>{item}</li>
-        ))}
-      </ul>
+      {items.length > 0 ? (
+        <ul>
+          {items.map((item, i) => (
+            <li key={i}>{item}</li>
+          ))}
+        </ul>
+      ) : (
+        <p className="study-empty">No additional reading for this day.</p>
+      )}
     </section>
   );
 }

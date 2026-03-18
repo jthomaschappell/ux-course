@@ -8,23 +8,25 @@ interface TaskListProps {
 }
 
 export function TaskList({ tasks, progress, onToggle }: TaskListProps) {
-  if (tasks.length === 0) return null;
-
   return (
     <section className="task-list">
       <h3 className="section-heading">Tasks</h3>
-      <ul className="task-list-ul">
-        {tasks.map((task) => (
-          <li key={task.id}>
-            <TaskItem
-              id={task.id}
-              label={task.label}
-              done={!!progress[task.id]}
-              onToggle={(done) => onToggle(task.id, done)}
-            />
-          </li>
-        ))}
-      </ul>
+      {tasks.length > 0 ? (
+        <ul className="task-list-ul">
+          {tasks.map((task) => (
+            <li key={task.id}>
+              <TaskItem
+                id={task.id}
+                label={task.label}
+                done={!!progress[task.id]}
+                onToggle={(done) => onToggle(task.id, done)}
+              />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="task-list-empty">No tasks for this day.</p>
+      )}
     </section>
   );
 }

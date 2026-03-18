@@ -20,28 +20,46 @@ export function DayContent({
   onTaskToggle,
   onArtifactsChange,
 }: DayContentProps) {
+  const dayTotal = day.tasks.length;
+  const dayDone = day.tasks.filter((task) => taskProgress[task.id]).length;
+
   return (
     <div
       id={`panel-${day.id}`}
       role="tabpanel"
       aria-labelledby={`tab-${day.id}`}
-      className="day-content"
+      className="day-content bento-grid"
     >
-      <StudySection items={day.studyItems} />
-      <DeliverableSection
-        title={day.deliverableTitle}
-        description={day.deliverableDescription}
-      />
-      <TaskList
-        tasks={day.tasks}
-        progress={taskProgress}
-        onToggle={onTaskToggle}
-      />
-      <ArtifactForm
-        day={day}
-        artifacts={artifacts}
-        onArtifactsChange={onArtifactsChange}
-      />
+      <section className="day-intro">
+        <p className="day-kicker">{day.shortLabel}</p>
+        <h2 className="day-title">{day.title}</h2>
+        <p className="day-meta">
+          {dayDone}/{dayTotal} tasks complete
+        </p>
+      </section>
+      <div className="bento-card bento-study">
+        <StudySection items={day.studyItems} />
+      </div>
+      <div className="bento-card bento-deliverable">
+        <DeliverableSection
+          title={day.deliverableTitle}
+          description={day.deliverableDescription}
+        />
+      </div>
+      <div className="bento-card bento-tasks">
+        <TaskList
+          tasks={day.tasks}
+          progress={taskProgress}
+          onToggle={onTaskToggle}
+        />
+      </div>
+      <div className="bento-card bento-artifacts">
+        <ArtifactForm
+          day={day}
+          artifacts={artifacts}
+          onArtifactsChange={onArtifactsChange}
+        />
+      </div>
     </div>
   );
 }
