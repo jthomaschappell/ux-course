@@ -7,6 +7,12 @@ const QUESTIONS = [
   { key: 'improvementAnswer' as const, label: 'Tell me about a UX improvement you made.' },
 ];
 
+const PUSHBACK_PROMPTS = [
+  '"Stakeholders disagree."',
+  '"Research conflicts with revenue."',
+  '"We don\'t have time for testing."',
+];
+
 interface Day7PracticeFormProps {
   artifacts: Day7Artifacts | undefined;
   onChange: (artifacts: Day7Artifacts) => void;
@@ -42,7 +48,10 @@ export function Day7PracticeForm({ artifacts, onChange }: Day7PracticeFormProps)
         </label>
       ))}
       <label>
-        <span>Pushback responses (Stakeholders disagree / Research vs revenue / No time for testing)</span>
+        <span>Pushback responses</span>
+        <p className="pushback-prompts">
+          Practice responding to: {PUSHBACK_PROMPTS.join(' · ')}
+        </p>
         <textarea
           value={data.pushbackNotes}
           onChange={(e) => update('pushbackNotes', e.target.value)}

@@ -21,17 +21,17 @@ function ensureTwoTests(artifacts: Day4Artifacts | undefined): Day4Artifacts {
   const t1 = a[0] ?? { issues: [] };
   const t2 = a[1] ?? { issues: [] };
   return [
-    { issues: t1.issues.length > 0 ? t1.issues : [DEFAULT_ISSUE] },
-    { issues: t2.issues.length > 0 ? t2.issues : [DEFAULT_ISSUE] },
+    { taskGiven: t1.taskGiven, issues: t1.issues.length > 0 ? t1.issues : [DEFAULT_ISSUE] },
+    { taskGiven: t2.taskGiven, issues: t2.issues.length > 0 ? t2.issues : [DEFAULT_ISSUE] },
   ];
 }
 
 export function Day4FindingsForm({ artifacts, onChange }: Day4FindingsFormProps) {
   const tests = ensureTwoTests(artifacts);
 
-  const updateTest = (testIdx: number, issues: UsabilityIssue[]) => {
+  const updateTest = (testIdx: number, updates: Partial<UsabilityTestEntry>) => {
     const next = [...tests];
-    next[testIdx] = { issues };
+    next[testIdx] = { ...next[testIdx], ...updates };
     onChange(next);
   };
 
@@ -44,12 +44,12 @@ export function Day4FindingsForm({ artifacts, onChange }: Day4FindingsFormProps)
     const issues = [...(tests[testIdx]?.issues ?? [])];
     const issue = issues[issueIdx] ?? { ...DEFAULT_ISSUE };
     issues[issueIdx] = { ...issue, [field]: value };
-    updateTest(testIdx, issues);
+    updateTest(testIdx, { issues });
   };
 
   const addIssue = (testIdx: number) => {
     const issues = [...(tests[testIdx]?.issues ?? []), { ...DEFAULT_ISSUE }];
-    updateTest(testIdx, issues);
+    updateTest(testIdx, { issues });
   };
 
   const renderIssues = (test: UsabilityTestEntry, testIdx: number) =>
@@ -102,9 +102,21 @@ export function Day4FindingsForm({ artifacts, onChange }: Day4FindingsFormProps)
 
   return (
     <div className="artifact-form-day4">
+      <p className="script-note">
+        Don&apos;t ask preference questions (e.g. &quot;Would you use this?&quot;). Focus on observed behavior and task completion.
+      </p>
       {tests.map((test, i) => (
         <div key={i} className="test-card">
           <h4>Usability test {i + 1}</h4>
+          <label>
+            <span>Task given to participant</span>
+            <input
+              type="text"
+              value={test.taskGiven ?? ''}
+              onChange={(e) => updateTest(i, { taskGiven: e.target.value })}
+              placeholder="e.g. Add a new project and invite a teammate"
+            />
+          </label>
           {renderIssues(test, i)}
           <button type="button" onClick={() => addIssue(i)}>
             + Add issue

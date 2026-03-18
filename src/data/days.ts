@@ -1,12 +1,21 @@
 import type { Day } from '../types/course';
 
-export const GOAL_BY_DAY_7 = [
-  'Fluent in UX vocabulary',
-  'Strong in core principles',
-  'Able to run lightweight usability tests',
-  'Capable of intelligent critique and redesign',
-  'Confident in product discussions and interviews',
+export const GOAL_BY_DAY_7: { goal: string; days: string }[] = [
+  { goal: 'Fluent in UX vocabulary', days: 'Days 1–3' },
+  { goal: 'Strong in core principles', days: 'Days 1–3' },
+  { goal: 'Able to run lightweight usability tests', days: 'Day 4' },
+  { goal: 'Capable of intelligent critique and redesign', days: 'Days 5–6' },
+  { goal: 'Confident in product discussions and interviews', days: 'Day 7' },
 ];
+
+export const SEVERITY_DEFINITIONS = {
+  High: 'Blocks task completion',
+  Medium: 'Major friction',
+  Low: 'Annoyance',
+} as const;
+
+export const MENTAL_MODEL_ONE_LINER =
+  'Goal → Context → Friction → Cognitive Load → Design Intervention → Measurable Outcome';
 
 export const DAYS: Day[] = [
   {
@@ -30,27 +39,36 @@ export const DAYS: Day[] = [
 7. Expected Measurable Impact
 
 Critique targets:
-- Linear (or similar productivity tool)
-- Your own app (DrawFi or similar)
+- A productivity tool you use
+- An app you're building or own
 - One intentionally bad website
 
-Rule: No watching without writing.`,
+Rule: Use the product in small chunks and complete each section before moving on. No watching without writing.
+
+Good looks like: At least one heuristic named NNG-style, a testable hypothesis.`,
     tasks: [
       { id: 'study', label: 'Study NNG heuristics, DoET, and Laws of UX' },
-      { id: 'critique1', label: 'Complete critique 1: Linear or similar productivity tool' },
-      { id: 'critique2', label: 'Complete critique 2: Your own app (DrawFi or similar)' },
+      { id: 'critique1', label: 'Complete critique 1: A productivity tool you use' },
+      { id: 'critique2', label: 'Complete critique 2: An app you\'re building or own' },
       { id: 'critique3', label: 'Complete critique 3: Intentionally bad website' },
     ],
     artifactType: 'day1Critique',
     artifactConfig: {
-      critiqueTargets: ['Linear (or similar productivity tool)', 'Your own app (DrawFi or similar)', 'One intentionally bad website'],
+      critiqueTargets: ['A productivity tool you use', 'An app you\'re building or own', 'One intentionally bad website'],
     },
+    objective: 'Build a shared mental model for UX critique and learn to apply heuristics.',
+    estimatedMinutes: 90,
+    oneThingToNail: 'At least one heuristic named NNG-style and a testable hypothesis.',
   },
   {
     id: 'day2',
     title: 'UX Communication Training',
     shortLabel: 'Day 2',
-    studyItems: [],
+    studyItems: [
+      'Critique script structure',
+      'Replacing vague language with UX terminology',
+      '2-minute pitch format',
+    ],
     deliverableTitle: '2-Minute Critique Recording',
     deliverableDescription: `Take one critique from Day 1.
 
@@ -75,6 +93,9 @@ Goal: Clear, structured explanation without filler.`,
       { id: 'refine', label: 'Replace vague phrases with UX terminology' },
     ],
     artifactType: 'day2Communication',
+    objective: 'Translate critique into clear, structured speech without vague language.',
+    estimatedMinutes: 45,
+    oneThingToNail: 'Replace at least one vague phrase with specific UX terminology.',
   },
   {
     id: 'day3',
@@ -107,12 +128,19 @@ If you can't apply it, you don't know it.`,
     artifactConfig: {
       lawNames: ["Fitts's Law", "Hick's Law", 'Progressive Disclosure', 'Recognition vs Recall', 'Error Prevention'],
     },
+    objective: 'Apply UX laws to real screens so you can spot violations and improvements.',
+    estimatedMinutes: 75,
+    oneThingToNail: 'Apply at least one law to a real screen with concrete before/after.',
   },
   {
     id: 'day4',
     title: 'Structured Usability Testing',
     shortLabel: 'Day 4',
-    studyItems: [],
+    studyItems: [
+      'Moderator script',
+      'Task design',
+      'Severity (High / Medium / Low)',
+    ],
     deliverableTitle: 'Usability Findings Doc',
     deliverableDescription: `Run 2 usability tests (not interviews).
 
@@ -122,10 +150,12 @@ Script:
 3. Do not help.
 4. Observe: hesitation, confusion language, misclicks, task abandonment
 
+Do not ask preference questions (e.g. "Would you use this?"). Focus on observed behavior and task completion.
+
 Produce a Usability Findings Doc. For each issue:
 - Observed friction
 - Root cause hypothesis
-- Severity (Low / Medium / High)
+- Severity (Low / Medium / High — see Reference panel for definitions)
 - Proposed change
 
 This becomes a real discussion artifact.`,
@@ -135,6 +165,9 @@ This becomes a real discussion artifact.`,
       { id: 'doc', label: 'Document findings with severity and proposed changes' },
     ],
     artifactType: 'day4Findings',
+    objective: 'Run lightweight usability tests and document findings with severity.',
+    estimatedMinutes: 90,
+    oneThingToNail: 'One task given to participant, observed behavior only (no preference questions).',
   },
   {
     id: 'day5',
@@ -152,10 +185,12 @@ This becomes a real discussion artifact.`,
     deliverableDescription: `Recreate one screen from an app you admire.
 
 Requirements:
+- Use auto-layout and components
 - Consistent spacing
 - Clear hierarchy
 - Reusable components
 - Clean layout logic
+- Share a view-only Figma link
 
 No random rectangle dragging.`,
     tasks: [
@@ -163,12 +198,19 @@ No random rectangle dragging.`,
       { id: 'recreate', label: 'Recreate one screen from admired app in Figma' },
     ],
     artifactType: 'day5Figma',
+    objective: 'Learn Figma as a system: spacing, hierarchy, components, auto-layout.',
+    estimatedMinutes: 90,
+    oneThingToNail: 'Use auto-layout and share a view-only Figma link.',
   },
   {
     id: 'day6',
     title: 'Redesign Sprint (Mini Case Study)',
     shortLabel: 'Day 6',
-    studyItems: [],
+    studyItems: [
+      'Case study structure',
+      'Before/after framing',
+      'KPIs for design impact',
+    ],
     deliverableTitle: 'Product Case Study',
     deliverableDescription: `Pick one flawed flow from your own app.
 
@@ -180,6 +222,8 @@ Deliver:
 5. Before/after comparison
 6. Expected KPI impact
 
+Good looks like: Clear before/after, one KPI, redesign link.
+
 Write this like a product case study.`,
     tasks: [
       { id: 'pick', label: 'Pick flawed flow from own app' },
@@ -188,12 +232,19 @@ Write this like a product case study.`,
       { id: 'document', label: 'Document before/after and expected KPI impact' },
     ],
     artifactType: 'day6CaseStudy',
+    objective: 'Produce a mini case study with before/after and one KPI.',
+    estimatedMinutes: 90,
+    oneThingToNail: 'Clear before/after comparison and one KPI.',
   },
   {
     id: 'day7',
     title: 'Interview Fluency + Pushback Handling',
     shortLabel: 'Day 7',
-    studyItems: [],
+    studyItems: [
+      'Answer structure (Goal → Constraint → Tradeoff → Design Decision → Validation → Outcome)',
+      'Pushback patterns',
+      'Portfolio framing',
+    ],
     deliverableTitle: 'Practice Answers',
     deliverableDescription: `Prepare answers using this formula:
 
@@ -217,15 +268,18 @@ Respond clearly and confidently.`,
       { id: 'pushback', label: 'Simulate and practice pushback responses' },
     ],
     artifactType: 'day7Practice',
+    objective: 'Speak confidently in interviews and handle pushback.',
+    estimatedMinutes: 60,
+    oneThingToNail: 'One answer using the formula; one pushback response practiced.',
   },
 ];
 
-export const REFERENCE_RESOURCES = [
-  { name: 'Nielsen Norman Group', desc: 'Articles + YouTube' },
-  { name: 'Laws of UX', desc: 'Visual psychology reference' },
-  { name: 'Figma official tutorials', desc: '' },
-  { name: 'Figma Community design systems', desc: '' },
-  { name: 'AJ&Smart YouTube', desc: 'Practical UX walkthroughs' },
+export const REFERENCE_RESOURCES: { name: string; desc: string; url?: string }[] = [
+  { name: 'Nielsen Norman Group', desc: 'Articles + YouTube', url: 'https://www.nngroup.com' },
+  { name: 'Laws of UX', desc: 'Visual psychology reference', url: 'https://lawsofux.com' },
+  { name: 'Figma official tutorials', desc: '', url: 'https://www.figma.com/resources/learn-design/' },
+  { name: 'Figma Community design systems', desc: '', url: 'https://www.figma.com/community' },
+  { name: 'AJ&Smart YouTube', desc: 'Practical UX walkthroughs', url: 'https://www.youtube.com/@ajsmart' },
 ];
 
 export const MENTAL_MODEL = `Always structure thinking like this:
@@ -237,6 +291,8 @@ Example:
 Users submitting draw requests experience high cognitive load due to dense financial terminology. By restructuring the information architecture and applying progressive disclosure, we reduce friction and increase completion rates.`;
 
 export const OUTCOME = `After 7 days you will not be a senior UX designer.
+
+This plan builds fluency, not full expertise.
 
 But you WILL be:
 - Fluent in UX terminology

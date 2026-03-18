@@ -1,6 +1,7 @@
 import type { Day3Artifacts, LawApplication } from '../../types/progress';
 
 const DEFAULT_LAW: LawApplication = {
+  screenName: '',
   whereRespected: '',
   whereViolated: '',
   improvement: '',
@@ -29,11 +30,20 @@ export function Day3LawForm({ artifacts, lawNames, onChange }: Day3LawFormProps)
         <div key={i} className="law-card">
           <h4>{name}</h4>
           <label>
+            <span>Name the screen or product</span>
+            <input
+              type="text"
+              value={laws[i]?.screenName ?? ''}
+              onChange={(e) => update(i, 'screenName', e.target.value)}
+              placeholder="e.g. Gmail compose screen, Spotify home"
+            />
+          </label>
+          <label>
             <span>Where it is respected</span>
             <textarea
               value={laws[i]?.whereRespected ?? ''}
               onChange={(e) => update(i, 'whereRespected', e.target.value)}
-              placeholder="Describe where this law is respected in your chosen screen"
+              placeholder="e.g. Large click target for primary action"
               rows={2}
             />
           </label>
@@ -42,7 +52,7 @@ export function Day3LawForm({ artifacts, lawNames, onChange }: Day3LawFormProps)
             <textarea
               value={laws[i]?.whereViolated ?? ''}
               onChange={(e) => update(i, 'whereViolated', e.target.value)}
-              placeholder="Describe where this law is violated"
+              placeholder="e.g. Too many menu options at once"
               rows={2}
             />
           </label>
@@ -51,7 +61,7 @@ export function Day3LawForm({ artifacts, lawNames, onChange }: Day3LawFormProps)
             <textarea
               value={laws[i]?.improvement ?? ''}
               onChange={(e) => update(i, 'improvement', e.target.value)}
-              placeholder="Describe the improvement"
+              placeholder="e.g. Progressive disclosure for secondary options"
               rows={2}
             />
           </label>

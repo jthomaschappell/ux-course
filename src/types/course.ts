@@ -29,4 +29,7 @@ export interface Day {
     critiqueTargets?: string[];
     lawNames?: string[];
   };
+  objective?: string;
+  estimatedMinutes?: number;
+  oneThingToNail?: string;
 }

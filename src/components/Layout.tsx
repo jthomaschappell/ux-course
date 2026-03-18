@@ -57,6 +57,11 @@ export function Layout({
                 Strong information hierarchy, deliberate daily reps, and practical artifacts that
                 show your thinking.
               </p>
+              <div className="layout-intro-details">
+                <p><strong>Who it&apos;s for:</strong> Designers and product people building UX fluency.</p>
+                <p><strong>How to use:</strong> Work day-by-day. Complete study → tasks → artifacts in order.</p>
+                <p><strong>Time:</strong> Roughly 1–2 hours per day.</p>
+              </div>
             </div>
             <div className="hero-action-card">
               <p className="hero-action-kicker">Live focus</p>

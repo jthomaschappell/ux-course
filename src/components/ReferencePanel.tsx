@@ -2,8 +2,10 @@ import { useState } from 'react';
 import {
   REFERENCE_RESOURCES,
   MENTAL_MODEL,
+  MENTAL_MODEL_ONE_LINER,
   OUTCOME,
   GOAL_BY_DAY_7,
+  SEVERITY_DEFINITIONS,
 } from '../data/days';
 
 export function ReferencePanel() {
@@ -25,7 +27,9 @@ export function ReferencePanel() {
             <h3>Goal by Day 7</h3>
             <ul>
               {GOAL_BY_DAY_7.map((g, i) => (
-                <li key={i}>{g}</li>
+                <li key={i}>
+                  {g.goal} <span className="goal-days">({g.days})</span>
+                </li>
               ))}
             </ul>
           </section>
@@ -34,13 +38,27 @@ export function ReferencePanel() {
             <ul>
               {REFERENCE_RESOURCES.map((r, i) => (
                 <li key={i}>
-                  <strong>{r.name}</strong> {r.desc && `— ${r.desc}`}
+                  {r.url ? (
+                    <a href={r.url} target="_blank" rel="noopener noreferrer">{r.name}</a>
+                  ) : (
+                    <strong>{r.name}</strong>
+                  )}
+                  {r.desc && ` — ${r.desc}`}
                 </li>
               ))}
             </ul>
           </section>
           <section>
+            <h3>Severity (usability findings)</h3>
+            <ul>
+              {Object.entries(SEVERITY_DEFINITIONS).map(([level, def]) => (
+                <li key={level}><strong>{level}:</strong> {def}</li>
+              ))}
+            </ul>
+          </section>
+          <section>
             <h3>Mental model for speaking UX</h3>
+            <p className="mental-model-one-liner">{MENTAL_MODEL_ONE_LINER}</p>
             <pre>{MENTAL_MODEL}</pre>
           </section>
           <section>

@@ -3,6 +3,37 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  position: relative;
+  isolation: isolate;
+  overflow-x: hidden;
+}
+
+.app-stripe {
+  position: fixed;
+  top: -20%;
+  left: -15%;
+  width: 140vw;
+  height: 140vh;
+  pointer-events: none;
+  z-index: -1;
+  transform: rotate(-12deg);
+  transform-origin: center center;
+}
+
+.app-stripe-svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.app-stripe-path {
+  transform-origin: center center;
+  transition: opacity 0.4s ease;
+}
+
+.app-stripe-path--soft {
+  opacity: 0.88;
 }
 
 .layout {
@@ -99,6 +130,22 @@
   text-align: left;
   color: var(--color-text-muted);
   font-size: 1.05rem;
+}
+
+.hero-message .layout-intro-details {
+  margin: var(--space-4) 0 0;
+  max-width: 42ch;
+  text-align: left;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+
+.hero-message .layout-intro-details p {
+  margin: var(--space-2) 0 0;
+}
+
+.hero-message .layout-intro-details p:first-child {
+  margin-top: 0;
 }
 
 .hero-action-card {
@@ -305,6 +352,30 @@
   color: var(--color-text-muted);
 }
 
+.day-objective {
+  margin: var(--space-3) 0 0;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+
+.day-context {
+  margin: var(--space-2) 0 0;
+}
+
+.day-estimate {
+  display: inline-block;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.day-one-thing {
+  margin: var(--space-2) 0 0;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+
 .section-heading {
   margin: 0 0 var(--space-4);
   font-family: var(--font-display);
@@ -439,6 +510,21 @@
   letter-spacing: 0.08em;
 }
 
+.artifact-form-day4 .script-note {
+  margin: 0 0 var(--space-4);
+  padding: var(--space-3);
+  background: #f9f9f7;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.artifact-form-day7 .pushback-prompts {
+  margin: 0 0 var(--space-2);
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
 .artifact-form button {
   border: 1px solid var(--color-border);
   border-radius: 999px;
@@ -508,6 +594,23 @@
   white-space: pre-wrap;
 }
 
+.reference-content .goal-days {
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+.reference-content .mental-model-one-liner {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.reference-content a {
+  color: var(--color-accent, #2563eb);
+  text-decoration: underline;
+}
+
 @media (max-width: 900px) {
   .nav-links {
     display: none;
@@ -533,6 +636,14 @@
 }
 
 @media (max-width: 640px) {
+  .app-stripe {
+    width: 120vw;
+    height: 120vh;
+    top: -15%;
+    left: -10%;
+    transform: rotate(-14deg);
+  }
+
   .layout-header {
     padding: var(--space-4);
   }

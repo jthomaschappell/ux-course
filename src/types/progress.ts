@@ -27,6 +27,7 @@ export interface Day2Artifacts {
 
 // Day 3: 5 law applications
 export interface LawApplication {
+  screenName?: string;
   whereRespected: string;
   whereViolated: string;
   improvement: string;
@@ -43,6 +44,7 @@ export interface UsabilityIssue {
 }
 
 export interface UsabilityTestEntry {
+  taskGiven?: string;
   issues: UsabilityIssue[];
 }
 
