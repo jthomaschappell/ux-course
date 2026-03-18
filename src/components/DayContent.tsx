@@ -1,6 +1,5 @@
 import type { Day } from '../types/course';
-import { StudySection } from './StudySection';
-import { DeliverableSection } from './DeliverableSection';
+import { EditableStudyDeliverable } from './EditableStudyDeliverable';
 import { TaskList } from './TaskList';
 import { ArtifactForm } from './ArtifactForm';
 import type { StorageSchema } from '../types/progress';
@@ -54,15 +53,7 @@ export function DayContent({
           </div>
         )}
       </section>
-      <div className="bento-card bento-study">
-        <StudySection items={day.studyItems} />
-      </div>
-      <div className="bento-card bento-deliverable">
-        <DeliverableSection
-          title={day.deliverableTitle}
-          description={day.deliverableDescription}
-        />
-      </div>
+      <EditableStudyDeliverable day={day} />
       <div className="bento-card bento-tasks">
         <TaskList
           tasks={day.tasks}

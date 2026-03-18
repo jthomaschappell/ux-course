@@ -383,6 +383,125 @@
   letter-spacing: -0.01em;
 }
 
+.study-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.study-section-header .section-heading {
+  margin: 0;
+}
+
+.editable-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.editable-toolbar-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.editable-toolbar-btn:hover:not(:disabled) {
+  background: #f5f5f3;
+  border-color: #b5b5ad;
+}
+
+.editable-toolbar-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.editable-toolbar-btn[aria-pressed="true"] {
+  background: var(--color-accent-2);
+  color: #fff;
+  border-color: var(--color-accent-2);
+}
+
+.study-edit-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.study-edit-input {
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  font-size: 1rem;
+  font-family: inherit;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+
+.study-edit-input:focus {
+  outline: none;
+  border-color: var(--color-accent-2);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.deliverable-edit-label {
+  display: block;
+  margin: var(--space-2) 0 var(--space-1);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.deliverable-edit-title {
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  font-size: 1rem;
+  font-family: inherit;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  margin-bottom: var(--space-2);
+}
+
+.deliverable-edit-title:focus {
+  outline: none;
+  border-color: var(--color-accent-2);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.deliverable-edit-description {
+  width: 100%;
+  padding: var(--space-3);
+  font-size: 1rem;
+  font-family: inherit;
+  line-height: 1.5;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+  resize: vertical;
+  min-height: 160px;
+}
+
+.deliverable-edit-description:focus {
+  outline: none;
+  border-color: var(--color-accent-2);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
 .study-section ul,
 .reference-content ul {
   margin: 0;

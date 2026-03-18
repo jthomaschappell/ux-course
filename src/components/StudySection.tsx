@@ -2,12 +2,14 @@ import { SectionHeading } from './SectionHeading';
 
 interface StudySectionProps {
   items: string[];
+  /** When true, only render the list (no "Study" heading). Used inside EditableStudyDeliverable. */
+  hideHeading?: boolean;
 }
 
-export function StudySection({ items }: StudySectionProps) {
+export function StudySection({ items, hideHeading = false }: StudySectionProps) {
   return (
     <section className="study-section">
-      <SectionHeading>Study</SectionHeading>
+      {!hideHeading && <SectionHeading>Study</SectionHeading>}
       {items.length > 0 ? (
         <ul>
           {items.map((item, i) => (
