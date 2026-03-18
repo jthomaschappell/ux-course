@@ -1,12 +1,12 @@
 import type { Day6Artifacts } from '../../types/progress';
 
-const FIELDS: { key: keyof Day6Artifacts; label: string; placeholder?: string }[] = [
+const FIELDS: { key: keyof Day6Artifacts; label: string }[] = [
   { key: 'problemFraming', label: '1. Problem framing' },
   { key: 'assumptions', label: '2. Assumptions' },
   { key: 'observedFriction', label: '3. Observed friction' },
-  { key: 'redesignNotes', label: '4. Redesign (in Figma)', placeholder: 'View-only Figma link + short description of changes' },
+  { key: 'redesignNotes', label: '4. Redesign (in Figma)' },
   { key: 'beforeAfterComparison', label: '5. Before/after comparison' },
-  { key: 'expectedKpiImpact', label: '6. Expected KPI impact', placeholder: 'e.g. Completion rate up 15%; time on task down 20%' },
+  { key: 'expectedKpiImpact', label: '6. Expected KPI impact' },
 ];
 
 interface Day6CaseStudyFormProps {
@@ -30,13 +30,13 @@ export function Day6CaseStudyForm({ artifacts, onChange }: Day6CaseStudyFormProp
 
   return (
     <div className="artifact-form-day6">
-      {FIELDS.map(({ key, label, placeholder }) => (
+      {FIELDS.map(({ key, label }) => (
         <label key={key}>
           <span>{label}</span>
           <textarea
             value={data[key]}
             onChange={(e) => update(key, e.target.value)}
-            placeholder={placeholder ?? label}
+            placeholder={label}
             rows={3}
           />
         </label>

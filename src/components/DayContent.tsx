@@ -36,21 +36,6 @@ export function DayContent({
         <p className="day-meta">
           {dayDone}/{dayTotal} tasks complete
         </p>
-        {(day.objective ?? day.estimatedMinutes ?? day.oneThingToNail) != null && (
-          <div className="day-meta">
-            {day.objective != null && (
-              <p className="day-objective">{day.objective}</p>
-            )}
-            {day.estimatedMinutes != null && (
-              <p className="day-estimate">~{day.estimatedMinutes} min</p>
-            )}
-            {day.oneThingToNail != null && (
-              <p className="day-one-thing">
-                <strong>One thing to nail today:</strong> {day.oneThingToNail}
-              </p>
-            )}
-          </div>
-        )}
       </section>
       <div className="bento-card bento-study">
         <StudySection items={day.studyItems} />

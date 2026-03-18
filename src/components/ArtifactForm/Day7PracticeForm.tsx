@@ -1,5 +1,4 @@
 import type { Day7Artifacts } from '../../types/progress';
-import { INTERVIEW_FORMULA } from '../../data/days';
 
 const QUESTIONS = [
   { key: 'approachAnswer' as const, label: 'How do you approach UX?' },
@@ -29,7 +28,7 @@ export function Day7PracticeForm({ artifacts, onChange }: Day7PracticeFormProps)
   return (
     <div className="artifact-form-day7">
       <p className="formula-reminder">
-        Use: {INTERVIEW_FORMULA}
+        Use: User Goal → Constraint → Tradeoff → Design Decision → Validation → Outcome
       </p>
       {QUESTIONS.map(({ key, label }) => (
         <label key={key}>
@@ -43,14 +42,11 @@ export function Day7PracticeForm({ artifacts, onChange }: Day7PracticeFormProps)
         </label>
       ))}
       <label>
-        <span>Pushback responses</span>
-        <p className="pushback-prompts">
-          Practice responding to: &quot;Stakeholders disagree.&quot; / &quot;Research conflicts with revenue.&quot; / &quot;We don&apos;t have time for testing.&quot;
-        </p>
+        <span>Pushback responses (Stakeholders disagree / Research vs revenue / No time for testing)</span>
         <textarea
           value={data.pushbackNotes}
           onChange={(e) => update('pushbackNotes', e.target.value)}
-          placeholder="Write your response for each scenario. Use evidence and the formula: constraint → tradeoff → outcome."
+          placeholder="Your responses to common pushback scenarios..."
           rows={5}
         />
       </label>

@@ -61,10 +61,7 @@ export function Day1CritiqueForm({ artifacts, targets, onChange }: Day1CritiqueF
               <textarea
                 value={c[key]}
                 onChange={(e) => update(i, key, e.target.value)}
-                placeholder={
-                  key === 'primaryGoal' ? 'e.g. Create and assign a task in under 30 seconds' :
-                  key === 'expectedImpact' ? 'e.g. Higher completion rate, fewer errors' : label
-                }
+                placeholder={label}
                 rows={2}
               />
             </label>

@@ -33,7 +33,7 @@ export function Day3LawForm({ artifacts, lawNames, onChange }: Day3LawFormProps)
             <textarea
               value={laws[i]?.whereRespected ?? ''}
               onChange={(e) => update(i, 'whereRespected', e.target.value)}
-              placeholder="e.g. [Screen name]: large tap targets for primary action"
+              placeholder="Describe where this law is respected in your chosen screen"
               rows={2}
             />
           </label>
@@ -42,7 +42,7 @@ export function Day3LawForm({ artifacts, lawNames, onChange }: Day3LawFormProps)
             <textarea
               value={laws[i]?.whereViolated ?? ''}
               onChange={(e) => update(i, 'whereViolated', e.target.value)}
-              placeholder="e.g. Too many menu items at once; violates Hick's Law"
+              placeholder="Describe where this law is violated"
               rows={2}
             />
           </label>
@@ -51,7 +51,7 @@ export function Day3LawForm({ artifacts, lawNames, onChange }: Day3LawFormProps)
             <textarea
               value={laws[i]?.improvement ?? ''}
               onChange={(e) => update(i, 'improvement', e.target.value)}
-              placeholder="e.g. Progressive disclosure: show 5 options, then 'More'"
+              placeholder="Describe the improvement"
               rows={2}
             />
           </label>
