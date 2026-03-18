@@ -43,6 +43,8 @@ export interface UsabilityIssue {
 }
 
 export interface UsabilityTestEntry {
+  /** Task given to the participant (e.g. "Create a new project and add a task"). */
+  taskDescription?: string;
   issues: UsabilityIssue[];
 }
 

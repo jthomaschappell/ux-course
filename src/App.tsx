@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Layout } from './components/Layout';
+import { CourseIntro } from './components/CourseIntro';
 import { DayContent } from './components/DayContent';
 import { ReferencePanel } from './components/ReferencePanel';
 import { usePersistedProgress } from './hooks/usePersistedState';
@@ -44,6 +45,7 @@ function App() {
         taskProgress={progress.taskProgress as TaskProgress}
       >
         <div className="app-content">
+          {activeDayId === 'day1' && <CourseIntro />}
           <DayContent
             day={activeDay}
             taskProgress={taskProgressForDay}

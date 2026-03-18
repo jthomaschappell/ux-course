@@ -20,6 +20,12 @@ export interface Day {
   id: DayId;
   title: string;
   shortLabel: string;
+  /** One-sentence why this day matters (shown under the title). */
+  objective?: string;
+  /** Rough time to complete this day's work. */
+  estimatedMinutes?: number;
+  /** Single focus for the day. */
+  oneThingToNail?: string;
   studyItems: string[];
   deliverableTitle: string;
   deliverableDescription: string;

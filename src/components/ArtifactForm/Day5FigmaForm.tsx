@@ -47,7 +47,7 @@ export function Day5FigmaForm({
           onChange={(e) =>
             onChange({ ...data, recreateNotes: e.target.value })
           }
-          placeholder="Link to Figma file, notes on consistency, hierarchy, components..."
+          placeholder="Paste view-only Figma link, then notes on spacing, hierarchy, and components..."
           rows={4}
         />
       </label>
