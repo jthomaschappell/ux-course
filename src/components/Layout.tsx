@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { DayTabs } from './DayTabs';
+import { ThemeToggle } from './ThemeToggle';
 import type { Day } from '../types/course';
 import type { TaskProgress } from '../types/progress';
 
@@ -49,6 +50,7 @@ export function Layout({
     <div className="layout">
       <header className="layout-header">
         <div className="layout-header-shell">
+          <ThemeToggle />
           <div className="layout-hero-row">
             <div className="hero-message">
               <p className="layout-eyebrow">7-day designer growth system</p>
